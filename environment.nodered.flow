@@ -1,0 +1,141 @@
+[
+    {
+        "id": "2133acc2.86c334",
+        "type": "tab",
+        "label": "Environment Shield",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "1de1c531.19979b",
+        "type": "mqtt in",
+        "z": "2133acc2.86c334",
+        "name": "",
+        "topic": "+/+/mkrenv/+",
+        "qos": "1",
+        "datatype": "json",
+        "broker": "4fa30ad6.66b414",
+        "x": 90,
+        "y": 200,
+        "wires": [
+            [
+                "1a9aaf53.bbc291"
+            ]
+        ]
+    },
+    {
+        "id": "752b348f.c3977c",
+        "type": "influxdb out",
+        "z": "2133acc2.86c334",
+        "influxdb": "eee8235c.03ab6",
+        "name": "mkrenvDB",
+        "measurement": "",
+        "precision": "",
+        "retentionPolicy": "",
+        "x": 570,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "1a9aaf53.bbc291",
+        "type": "function",
+        "z": "2133acc2.86c334",
+        "name": "Convert to JSON",
+        "func": "var tokens = msg.topic.split(\"/\");\nmsg.measurement=tokens[0]\nmsg.payload = {\"device\":tokens[1],\"node\":tokens[2],\"property\":tokens[3],\"value\":msg.payload};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 330,
+        "y": 200,
+        "wires": [
+            [
+                "752b348f.c3977c"
+            ]
+        ]
+    },
+    {
+        "id": "bcda5047.70486",
+        "type": "inject",
+        "z": "2133acc2.86c334",
+        "name": "RESET DB",
+        "topic": "",
+        "payload": "DROP MEASUREMENT home",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 100,
+        "y": 300,
+        "wires": [
+            [
+                "4706fb18.284934"
+            ]
+        ]
+    },
+    {
+        "id": "56ae7070.14253",
+        "type": "influxdb in",
+        "z": "2133acc2.86c334",
+        "influxdb": "eee8235c.03ab6",
+        "name": "",
+        "query": "",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "x": 590,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4706fb18.284934",
+        "type": "function",
+        "z": "2133acc2.86c334",
+        "name": "Query",
+        "func": "msg.query=msg.payload;\nmsg.payload=\"\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 310,
+        "y": 300,
+        "wires": [
+            [
+                "56ae7070.14253"
+            ]
+        ]
+    },
+    {
+        "id": "4fa30ad6.66b414",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "Rpi Mosquitto",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "eee8235c.03ab6",
+        "type": "influxdb",
+        "z": "",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "mkrenvDB",
+        "name": "",
+        "usetls": false,
+        "tls": ""
+    }
+]

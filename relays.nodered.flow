@@ -1,0 +1,302 @@
+[
+    {
+        "id": "97f96ae3.2fb7a8",
+        "type": "tab",
+        "label": "Relays",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "51347ba7.4dbf44",
+        "type": "mqtt out",
+        "z": "97f96ae3.2fb7a8",
+        "name": "",
+        "topic": "home/arduino2/relayshield/relay1/set",
+        "qos": "",
+        "retain": "",
+        "broker": "4fa30ad6.66b414",
+        "x": 430,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "ec29ee74.46506",
+        "type": "mqtt out",
+        "z": "97f96ae3.2fb7a8",
+        "name": "",
+        "topic": "home/arduino2/relayshield/relay2/set",
+        "qos": "",
+        "retain": "",
+        "broker": "4fa30ad6.66b414",
+        "x": 430,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "6575ebb1.6acbb4",
+        "type": "mqtt in",
+        "z": "97f96ae3.2fb7a8",
+        "name": "",
+        "topic": "home/arduino2/relayshield/relay1",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "4fa30ad6.66b414",
+        "x": 180,
+        "y": 220,
+        "wires": [
+            [
+                "64b9af96.706fa"
+            ]
+        ]
+    },
+    {
+        "id": "fd828f4c.a2d4f",
+        "type": "ui_switch",
+        "z": "97f96ae3.2fb7a8",
+        "name": "",
+        "label": "",
+        "tooltip": "",
+        "group": "42e0068e.2c1e58",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 100,
+        "y": 300,
+        "wires": [
+            [
+                "ec29ee74.46506"
+            ]
+        ]
+    },
+    {
+        "id": "64b9af96.706fa",
+        "type": "ui_led",
+        "z": "97f96ae3.2fb7a8",
+        "group": "4e0bc39.ef4813c",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "red",
+                "value": "false",
+                "valueType": "str"
+            },
+            {
+                "color": "green",
+                "value": "true",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "name": "Relay1",
+        "x": 480,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "f680cc36.535c3",
+        "type": "mqtt in",
+        "z": "97f96ae3.2fb7a8",
+        "name": "",
+        "topic": "home/arduino2/relayshield/relay2",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "4fa30ad6.66b414",
+        "x": 170,
+        "y": 360,
+        "wires": [
+            [
+                "f56cf3ac.54a22"
+            ]
+        ]
+    },
+    {
+        "id": "f56cf3ac.54a22",
+        "type": "ui_led",
+        "z": "97f96ae3.2fb7a8",
+        "group": "42e0068e.2c1e58",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "red",
+                "value": "false",
+                "valueType": "str"
+            },
+            {
+                "color": "green",
+                "value": "true",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "name": "Relay2",
+        "x": 460,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "a0276afb.e33908",
+        "type": "mqtt in",
+        "z": "97f96ae3.2fb7a8",
+        "name": "",
+        "topic": "home/arduino2/$state",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "4fa30ad6.66b414",
+        "x": 140,
+        "y": 60,
+        "wires": [
+            [
+                "ffcd894c.b60558"
+            ]
+        ]
+    },
+    {
+        "id": "5acb539b.f03ebc",
+        "type": "ui_text",
+        "z": "97f96ae3.2fb7a8",
+        "group": "f9e9b382.a81be",
+        "order": 1,
+        "width": "20",
+        "height": "1",
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 610,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "b6aed3bc.64ac3",
+        "type": "ui_switch",
+        "z": "97f96ae3.2fb7a8",
+        "name": "",
+        "label": "",
+        "tooltip": "",
+        "group": "4e0bc39.ef4813c",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 100,
+        "y": 160,
+        "wires": [
+            [
+                "51347ba7.4dbf44"
+            ]
+        ]
+    },
+    {
+        "id": "ffcd894c.b60558",
+        "type": "function",
+        "z": "97f96ae3.2fb7a8",
+        "name": "",
+        "func": "\nif (msg.payload!=\"ready\"){\n    msg.payload=msg.payload+\" - Displaying last known\"\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 60,
+        "wires": [
+            [
+                "5acb539b.f03ebc"
+            ]
+        ]
+    },
+    {
+        "id": "4fa30ad6.66b414",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "Rpi Mosquitto",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "42e0068e.2c1e58",
+        "type": "ui_group",
+        "z": "",
+        "name": "RELAY 2",
+        "tab": "305628a7.7a15d8",
+        "order": 3,
+        "disp": true,
+        "width": "5",
+        "collapse": false
+    },
+    {
+        "id": "4e0bc39.ef4813c",
+        "type": "ui_group",
+        "z": "",
+        "name": "RELAY 1",
+        "tab": "305628a7.7a15d8",
+        "order": 2,
+        "disp": true,
+        "width": "5",
+        "collapse": false
+    },
+    {
+        "id": "f9e9b382.a81be",
+        "type": "ui_group",
+        "z": "",
+        "name": "STATUS",
+        "tab": "305628a7.7a15d8",
+        "order": 1,
+        "disp": true,
+        "width": "5",
+        "collapse": false
+    },
+    {
+        "id": "305628a7.7a15d8",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Relays dashboard",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
